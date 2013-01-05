@@ -1,0 +1,6 @@
+.git/
+.gitignore
+config.json
+exceptions.log
+npm-debug.log
+process.log

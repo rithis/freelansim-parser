@@ -48,6 +48,7 @@ var position;
 
 var token = require('./lib/token');
 var cookies = require('./lib/cookies');
+var server = require('./server/server');
 
 var info = function (cookies, callback) {
     logger.info("Fetching information");
@@ -134,7 +135,13 @@ var iteration = function () {
 };
 
 var loop = function () {    
-    preload(iteration);
+    preload(function () {
+        iteration();
+        
+        var port = process.env.VCAP_APP_PORT || 3000;
+        logger.info("Staring server", {port: port})
+        server(balances, positions, port);
+    });
     setInterval(iteration, nconf.get('interval'));
 };
 

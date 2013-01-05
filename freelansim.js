@@ -45,6 +45,7 @@ var balances;
 var balance;
 var positions;
 var position;
+var cookiesString;
 
 var token = require('./lib/token');
 var cookies = require('./lib/cookies');
@@ -102,8 +103,8 @@ var preload = function (callback) {
 };
 
 var iteration = function () {
-    if (nconf.get('cookies')) {
-        info(nconf.get('cookies'), result);
+    if (cookiesString) {
+        info(cookiesString, result);
 
     } else {
         var waterfall = [
@@ -118,11 +119,9 @@ var iteration = function () {
             },
 
             function (cookies, callback) {
-                logger.info("Saving cookies");
-                nconf.set('cookies', cookies);
-                nconf.save(function (err) {
-                    callback(err, cookies);
-                });
+                logger.info("Remember cookies");
+                cookiesString = cookies;
+                callback(null, cookies);
             },
 
             function (cookies, callback) {

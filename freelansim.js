@@ -23,10 +23,10 @@ var logger = new winston.Logger({
     exitOnError: false
 });
 
-if (nconf.get("loggy:subdomain") && nconf.get("loggy:token")) {
+if (nconf.get("loggly:subdomain") && nconf.get("loggly:token")) {
     logger.add(require('winston-loggly').Loggly, {
-        subdomain: nconf.get("loggy:subdomain"),
-        inputToken: nconf.get("loggy:token"),
+        subdomain: nconf.get("loggly:subdomain"),
+        inputToken: nconf.get("loggly:token"),
         handleExceptions: true,
         json: true
     });

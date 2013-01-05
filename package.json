@@ -16,6 +16,7 @@
     "dependencies": {
         "nconf": "0.6.x",
         "winston": "0.6.x",
+        "winston-loggly": "0.6.x",
         "mongodb": "1.2.x",
         "cheerio": "0.10.x",
         "async": "0.1.x",

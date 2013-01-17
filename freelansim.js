@@ -57,6 +57,11 @@ var info = function (cookies, callback) {
 };
 
 var result = function (error, currentBalance, currentPosition) {
+    if (currentPosition == 0) {
+        logger.warn("Status", {balance: currentBalance, position: currentPosition});
+        return;
+    }
+
     logger.info("Status", {balance: currentBalance, position: currentPosition});
 
     if (currentBalance !== balance) {
